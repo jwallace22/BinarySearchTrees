@@ -6,7 +6,7 @@ edited by Jeffrey Wallace on 11/12/2019
 
 
 */
-
+//this is a test of a gitHub commit from cLion window.
 #ifndef BST_312_H
 #define BST_312_H
 
@@ -149,6 +149,7 @@ template<class ItemType>
 BST_312<ItemType>::BST_312 ()
 {
     root = NULL;
+    cout<<"why this no work?" << endl;
 }
 
 template<class ItemType>
