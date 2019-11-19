@@ -1,7 +1,7 @@
 
 /*  BST312.h
   EE 312 Fall 2019
-edited by Jeffrey Wallace on 11/12/2019
+  edited by Jeffrey Wallace on 11/12/2019
   a simple implementation of a binary search tree
 
 
@@ -245,7 +245,7 @@ void BST_312 <ItemType>::deleteItem(const ItemType& newItem)
 template<class ItemType>
 void BST_312 <ItemType>::makeEmpty(TreeNode*& t)
 {
-    if(t!=NULL){
+    if(t!=NULL){ //recursively go through the tree and empty the tree from the bottom up
         makeEmpty(t->left);
         makeEmpty(t->right);
         delete(t);
@@ -287,7 +287,7 @@ bool BST_312 <ItemType>::isFull() const
 template<class ItemType>
 void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
-    TreeNode* temp = new TreeNode;
+    TreeNode* temp = new TreeNode; //items always inserted at the leaves
     temp->data = newItem;
     temp->left = NULL;
     temp->right = NULL;
@@ -316,14 +316,14 @@ void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 template<class ItemType>
 void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 {
-    if(root == NULL){
+    if(root == NULL){ //if the tree is empty, we insert the first root
         TreeNode*temp = new TreeNode;
         temp->data = newItem;
         temp->left = NULL;
         temp->right = NULL;
         root = temp;
     }
-    else{
+    else{ //otherwise we recursively find the leaf to insert the item at
         insertItem(root,newItem);
     }
 }
@@ -348,14 +348,14 @@ int BST_312 <ItemType>::countNodes(TreeNode* t) const
 template<class ItemType>
 int BST_312 <ItemType>::countNodes()
 {
-    return countNodes(root);
+    return countNodes(root); //countNodes found recursively by counting the nodes of each tree all the way down to a one node tree and adding up each tree
 }
 
 template<class ItemType>
 void BST_312 <ItemType>::preOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
     if(t!=NULL){
-        result.push_back(t->data);
+        result.push_back(t->data); // preOrder = self, left, right
         preOrderTraversal(t->left, result);
         preOrderTraversal(t->right,result);
     }
@@ -376,7 +376,7 @@ template<class ItemType>
 void BST_312 <ItemType>::inOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
     if(t!=NULL){
-        inOrderTraversal(t->left, result);
+        inOrderTraversal(t->left, result); // inOrder = left self right
         result.push_back(t->data);
         inOrderTraversal(t->right,result);
     }
@@ -395,7 +395,7 @@ template<class ItemType>
 void BST_312 <ItemType>::postOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
     if(t!=NULL){
-        postOrderTraversal(t->left, result);
+        postOrderTraversal(t->left, result); //postOrder = left, right, self
         postOrderTraversal(t->right,result);
         result.push_back(t->data);
     }
@@ -405,11 +405,12 @@ template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 {
     vector<ItemType> result;
-    postOrderTraversal(root,result);
+    postOrderTraversal(root,result); //the tree is traversed recursively
     return result;
 }
 
 template<class ItemType>
+//no recursion needed since the binary search tree is sorted by definition and can be searched iteratively
 bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
     TreeNode * t = root;
@@ -417,14 +418,14 @@ bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
         if(item == t->data){
             return true;
         }
-        else if(item > t->data){
+        else if(item > t->data){ //greater than stored to the right
             t = t->right;
         }
         else{
-            t = t->left;
+            t = t->left;//less than stored to the left
         }
     }
-    return false;
+    return false; //the function falls out of the loop when the pointer is NULL meaning either the tree is empty or the item is not where it would be
 
 }
 

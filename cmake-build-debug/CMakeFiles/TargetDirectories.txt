@@ -1,0 +1,3 @@
+C:/Users/jwall/Documents/GitHub/BinarySearchTrees/cmake-build-debug/CMakeFiles/BinarySearchTrees.dir
+C:/Users/jwall/Documents/GitHub/BinarySearchTrees/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jwall/Documents/GitHub/BinarySearchTrees/cmake-build-debug/CMakeFiles/rebuild_cache.dir
